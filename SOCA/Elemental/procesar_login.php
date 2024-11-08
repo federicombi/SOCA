@@ -4,8 +4,6 @@
 
     procesar_login();
 
-    /////////////// funciones:
-
     function getProfesor($conexion, $email){
         ////ya se debe haber hecho la conexión a la bbdd
         try{

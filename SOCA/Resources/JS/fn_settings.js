@@ -156,17 +156,14 @@ async function mostrarBienvenida(id_curso){
 async function cargarCurso(){
     try {
         let curso = await buscarCurso();
-        console.log(curso);
         if(curso){
             const horarios = await cargarHorarios(curso.id_curso);
         
             if(horarios[0] === undefined){
-                console.log("no esta definido el horario");
                 addEmpty(HORARIOS_BODY, "empty_horarios", "e", "<h3>No hay horarios cargados para esta materia.<br></h3><h4>Puede guardar los horarios para cargar automáticamente el curso al iniciar sesión</h4>");
                 addButton(document.getElementById("empty_horarios"), "Agregar horario", ()=>{guardarHorario(curso.id_curso)});
-            }else{
-                console.log(horarios);
-            }
+            };
+
             cargarAlumnos(curso.id_curso);
         }
         return 1;
@@ -339,7 +336,6 @@ async function desmatricular_alumno(id_matricula){
     const mensaje_operacion_incompleta = "<b> Error al desmatricular alumno </b>,<br> Reintente más tarde o comuníquese con el administrador.";
     try {
         const registro_borrado = await borrarRegistro(DESMATRICULAR_ALUMNO, "Desmatricular alumno?", "CONFIRMAR", {"id_matricula":id_matricula}, "Alumno desmatriculado", mensaje_operacion_incompleta, "El alumno no se puede eliminar porque tiene asistencias o calificaciones ingresadas");
-        console.log(registro_borrado);
         if(registro_borrado){
             cargarAlumnos(id_curso_global);
         }

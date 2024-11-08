@@ -212,6 +212,12 @@ h3{
     font-size: 120%;
     margin-top:20px;
 }
+#waldo{
+    position:absolute;
+    z-index: 800;
+    margin-top:-1.48%; 
+    margin-left:8.3%;
+}
 
 
 /*-------------------------------------- CONFIGURACIONES -----------------------------------*/

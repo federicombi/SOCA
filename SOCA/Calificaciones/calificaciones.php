@@ -57,7 +57,6 @@
                             <option value="tp4"> Trabajo Practico 4 </option>
                             <option value="tp5"> Trabajo Practico 5 </option>
                         </select>
-                        <!-- OVERLAY EDITOR PARA UN ÚNICO ALUMNO, Y MODIFICAR UNA NOTA YA INGRESADA O AGREGARLE UNA QUE NO ESTE-->  
                         <button id="boton_guardar_notas" onclick="guardarNotas()" disabled>GUARDAR</button>
                     </div>
                     <div class="notas_alumnos_container">
@@ -66,6 +65,7 @@
                         </table>
                     </div>
                 </div>
+                <img src="../Resources/Images/waldo.png" width="13px" id="waldo">
                 <div class="header_calificaciones">
                     <ol>
                         <li id="li_bienvenida">

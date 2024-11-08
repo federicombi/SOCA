@@ -68,23 +68,20 @@ async function agregarAlumnos(id_curso, dia_cursado){
 
 async function verificarCumples(id_curso){
     const cumpleanios = await fetchViaPost(VERIFICAR_CUMPLES, {"id_curso":id_curso});
-    console.log(cumpleanios);
     if(cumpleanios.length > 0){
         let cumpleanieros = "";
         await cumpleanios.forEach(cumple=>{
             cumpleanieros += cumple.nombre + " " + cumple.apellido+ ",<br>";
         });
-        console.log(cumpleanieros);
         await Swal.fire({
-            allowOutsideClick:false,
             backdrop: false,
             html: "Hoy es el cumpleaños de: <br> <h3>"+cumpleanieros+"</h3>",
             confirmButtonColor: "#3085d6",
-            confirmButtonText: "Genial!",
-            imageUrl: "https://cliply.co/wp-content/uploads/2021/02/392102670_BIRTHDAY_CAKE_400px.gif",
+            confirmButtonText: "¡Feliz Cumpleaños!",
+            imageUrl: "https://i.pinimg.com/originals/f0/8c/95/f08c957a99a34ae81832a9eb2dd40b5e.gif",
             imageWidth: 200,
             imageHeight: 200,
-            imageAlt: "Feliz Cumpleaños!",
+            imageAlt: "¡Feliz Cumpleaños!",
             didOpen: () => {
                 OVERLAY_MAIN_BODY.style.display = 'block';
             },

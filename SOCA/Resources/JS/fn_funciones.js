@@ -240,7 +240,7 @@ async function cargarInstituciones(){
         });
         SELECT_INSTITUCION.disabled = false;
     } catch(error){
-            console.log("error al obtener las instituciones");
+        throw new Error("Error al obtener las instituciones");
     }
 }
 

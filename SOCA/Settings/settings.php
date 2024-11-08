@@ -14,6 +14,7 @@
                 <table>
                     <tr>
                         <td style="text-align:left">
+                            <img src="../Resources/Images/waldo_hat.png" width="12px" id="waldo">
                             <img src="../Resources/Images/soca_logo_blanco.png" width="150" alt="SOCA logo">
                         </td>
                         <td style="text-align:right">
@@ -109,7 +110,7 @@
             </div>
         </div>    
         </div>
-
+        
     </body>
     <script src="../Resources\JS\constantes.js"></script>
     <script src="../Resources\JS\fn_funciones.js"></script>

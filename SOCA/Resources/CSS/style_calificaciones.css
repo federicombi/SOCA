@@ -1,4 +1,5 @@
 /*--------------------------------GENERALIDADES---------------------------*/
+
 html, body{
     height: 100%;
 }
@@ -203,7 +204,12 @@ button:disabled{
 button:disabled:hover{
     background-color: #656a8b;
 }
-
+#waldo{
+    position:absolute;
+    z-index: 800;
+    margin-top:35%; 
+    margin-left:98%;
+}
 .bienvenida{
     height: 40%;
     min-height: 50px;
