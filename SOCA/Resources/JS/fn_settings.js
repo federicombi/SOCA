@@ -383,6 +383,20 @@ async function borrarRegistro(ENLACE, titulo_alerta, titulo_boton_confirmar,  ob
         operacion_con_error( mensaje_error_bbdd, OVERLAY_MAIN_BODY);
     }
 }
+async function no_es_por_ahi(mensaje, overlay, cerrar_overlay){
+    const resultado = await Swal.fire({
+        text: mensaje, icon: "error", allowOutsideClick:false, backdrop: false, confirmButtonColor: "#3085d6",
+        didOpen: () => {
+            overlay.style.display = 'block';
+        },
+        willClose: () => {
+            if(cerrar_overlay){
+                overlay.style.display = 'none';
+            }
+        }
+    });
+    return resultado.isConfirmed;
+}
 
 async function guardarHorario(id_curso){
     try {
@@ -390,15 +404,9 @@ async function guardarHorario(id_curso){
         horas_del_horario = [], 
         dia_de_semana;
     
-        Swal.fire({allowOutsideClick:false,backdrop: false, title: "Agregar horario", icon: "info", showCancelButton: true, confirmButtonColor: "#0a6c15", cancelButtonColor: "#d33", confirmButtonText: "AGREGAR", cancelButtonText: "CANCELAR",
-            input: "range",
-            inputLabel: "N° de Módulos",
-            inputValue: 1,
-            inputAttributes: {
-                min: "1",
-                max: "9",
-                step: "1"
-            },
+        await Swal.fire({allowOutsideClick:false,backdrop: false, title: "Agregar horario", icon: "info", showCancelButton: true, confirmButtonColor: "#0a6c15", cancelButtonColor: "#d33", confirmButtonText: "AGREGAR", cancelButtonText: "CANCELAR",
+            input: "range",inputLabel: "N° de Módulos",inputValue: 1,
+            inputAttributes: {min: "1",max: "9",step: "1"},
             html: 'Día de la semana: <select id="swal_dia_de_semana" class="swal_select"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sábado</option><option value="0">Domingo</option></select> Hora de entrada: <input type="time" id="swal_hora_inicio" class="swal2-input"><br> Hora de salida: <input type="time" id="swal_hora_fin" class="swal2-input"></input> <br>',
             preConfirm: () => {
                 horas_del_horario = [document.getElementById("swal_hora_inicio").value , document.getElementById("swal_hora_fin").value];
@@ -424,75 +432,41 @@ async function guardarHorario(id_curso){
                 const [horas_hora_fin, minutos_hora_fin] = hora_fin.split(":").map(Number);
                 
                 if(datos_incompletos){
-                    Swal.fire({
-                        text: "Debe completar las horas de entrada y de salida",
-                        icon: "error",
-                        allowOutsideClick:false,
-                        backdrop: false,
-                        confirmButtonColor: "#3085d6",
-                        didOpen: () => {
-                            OVERLAY_MAIN_BODY.style.display = 'block';
-                        },
-                        willClose: () => {
-                            guardarHorario(id_curso);
-                            return;
-                        }
-                    });
+                    const entendido = await no_es_por_ahi("Debe completar las horas de entrada y de salida", OVERLAY_MAIN_BODY, true);
+                    if(entendido){
+                        guardarHorario(id_curso);
+                    }
+                    return entendido;
                 }else{
                     if(horas_hora_inicio > horas_hora_fin){
-                        Swal.fire({
-                            text: "La hora de salida debe ser mayor a la hora de entrada",
-                            icon: "error",
-                            allowOutsideClick:false,
-                            backdrop: false,
-                            confirmButtonColor: "#3085d6",
-                            didOpen: () => {OVERLAY_MAIN_BODY.style.display = 'block';},
-                            willClose: () => {
-                                guardarHorario(id_curso);
-                                return;
-                            }
-                        });
+                        const entendido = await no_es_por_ahi("La hora de salida debe ser mayor a la hora de entrada", OVERLAY_MAIN_BODY, true);
+                        if(entendido){
+                            guardarHorario(id_curso);
+                        }
+                        return entendido;
                     } else if ( horas_hora_inicio === horas_hora_fin){
                         if(minutos_hora_inicio >= minutos_hora_fin){
-                            Swal.fire({
-                                text: "La hora de salida debe ser mayor a la hora de entrada",
-                                icon: "error",
-                                allowOutsideClick:false,
-                                backdrop: false,
-                                confirmButtonColor: "#3085d6",
-                                didOpen: () => {
-                                    OVERLAY_MAIN_BODY.style.display = 'block';
-                                },
-                                willClose: () => {
-                                    guardarHorario(id_curso);
-                                    return;
-                                }
-                            });
+                            const entendido = await no_es_por_ahi("La hora de salida debe ser mayor a la hora de entrada", OVERLAY_MAIN_BODY, true);
+                            if(entendido){
+                                guardarHorario(id_curso);
+                            }
+                            return entendido;
                         }
                     } else{
-                        
                         const horario_guardado = await fetchViaPost(GUARDAR_HORARIO, {"id_curso":id_curso, "dia_de_semana":dia_de_semana, "hora_inicio":hora_inicio, "hora_fin":hora_fin, "modulos":modulos});
                         if(horario_guardado === "interrumpe"){
-                            Swal.fire({
-                                title:"Error",
-                                text: "El horario ingresado coincide con otro horario. <br> Por favor verífiquelo.",
-                                icon: "error",
-                                allowOutsideClick:false,
-                                backdrop: false,
-                                didOpen: () => {
-                                    OVERLAY_MAIN_BODY.style.display = 'block';
-                                },
-                                willClose: () => {
-                                    guardarHorario(id_curso);
-                                    return;
-                                }
-                            });
+                            const entendido = await no_es_por_ahi("El horario ingresado coincide con otro horario. <br> Por favor verífiquelo.", OVERLAY_MAIN_BODY, true);
+                            if(entendido){
+                                guardarHorario(id_curso);
+                            }
+                            return entendido;
                         }else if(horario_guardado){
                             operacion_exitosa("Horario guardado!", OVERLAY_MAIN_BODY);
                             cargarHorarios(id_curso);
-                            return;
+                            return horario_guardado;
                         }else {
-                           operacion_con_error("No se pudo guardar el horario.<br>Reintente más tarde o comuníquese con el administrador.", OVERLAY_MAIN_BODY)
+                           operacion_con_error("No se pudo guardar el horario.<br>Reintente más tarde o comuníquese con el administrador.", OVERLAY_MAIN_BODY);
+                           return horario_guardado;
                         }
     
                     }
