@@ -346,25 +346,6 @@ async function desmatricular_alumno(id_matricula){
 
 }
 
-
-
-
-
-
-
-////////////////////////////// controlador
-function template(){
-    try {
-
-        return 1;
-    } catch (error) {
-        throw error;
-        lanzar_error_bye("Error al obtener las localidades", OVERLAY_MAIN_BODY);
-        throw new Error("Mensaje");
-    }
-}
-////////////////////////////// funciones independientes ponele
-
 async function borrarRegistro(ENLACE, titulo_alerta, titulo_boton_confirmar,  objeto_para_enviar,mensaje_exito, mensaje_error, mensaje_error_bbdd){
     try {
         const eliminar_seguro = await confirmar_accion(titulo_alerta, "No podrás revertir esta acción", "warning", titulo_boton_confirmar, OVERLAY_MAIN_BODY);
@@ -546,7 +527,6 @@ async function crearCurso(titulo, mensaje){
 
 }
 async function addDivision() {
-    /////////////// HACER QUE VAYA A OTRO LADO AGREGAR DIVISION PARA QUE CONVIERTA LA NULL A LETRA.
     try {
         await crearCurso("Quieres agregar una division?", '<br>Se agregará una division para '+SELECT_MATERIA.options[SELECT_MATERIA.selectedIndex].text+'<br><br><b style="color:red;">Esta operación no es cancelable<br>Una vez creada, no podra borrar la división.</b>');
         return 1;
@@ -557,7 +537,6 @@ async function addDivision() {
 async function buscarAlumno(){
     try {
         let alumno;
-        ///////                           PIDE INGRESAR EL DNI DEL ALUMNO   
         const resultado_ingresar_dni = await Swal.fire({title: "Ingrese el DNI del alumno",input: "number",confirmButtonColor: "#3085d6",cancelButtonColor: "#d33",showCancelButton: true,confirmButtonText: "Buscar",cancelButtonText: "Cancelar",showLoaderOnConfirm: true,allowOutsideClick:false,focusConfirm: false,backdrop: false,
             didOpen: () => {
                 OVERLAY_MAIN_BODY.style.display = 'block';
@@ -654,36 +633,13 @@ async function registrarAlumno(dni){
             OVERLAY_MAIN_BODY.style.display = 'none';
         },
         preConfirm: async () => {
-            try {
-                natalicio = document.getElementById("swal_natalicio").value;
-                nombre = document.getElementById("swal_nombre").value;
-                apellido = document.getElementById("swal_apellido").value;
-                email = document.getElementById("swal_email").value;
-                validarInputTextoSwal(nombre, "nombre");
-                validarInputTextoSwal(apellido, "apellido");
-                if (email == ""){
-                    Swal.showValidationMessage('Ingrese el correo electrónico'); 
-                }else{
-                    if(!email_ok(email)){
-                        Swal.showValidationMessage('Ingrese un correo electrónico válido'); 
-                    }
-                }
-                if (natalicio == ""){
-                    Swal.showValidationMessage('Ingrese una fecha de nacimiento'); 
-                }else{
-                    fecha_nacimiento = new Date(natalicio);
-                    const hoy = new Date();
-                    const fecha_minima = new Date("1924-01-01");
-        
-                    if(fecha_nacimiento > hoy){     
-                        Swal.showValidationMessage('Ingrese una fecha de nacimiento válida.'); 
-                    }else if(fecha_nacimiento < fecha_minima){
-                        Swal.showValidationMessage('Ingrese una fecha de nacimiento válida.'); 
-                    }
-                }
-                return true;
-            } catch (error) {
-                Swal.showValidationMessage('Hubo un error al registrar el alumno. Comuníquese con el administrador.');
+            natalicio = document.getElementById("swal_natalicio").value;
+            nombre = document.getElementById("swal_nombre").value;
+            apellido = document.getElementById("swal_apellido").value;
+            email = document.getElementById("swal_email").value;
+            const todo_ok = await validarInputsRegistro(nombre, apellido, email, natalicio);
+            if(!todo_ok){
+                return 0;
             }
         }
     });
@@ -712,7 +668,6 @@ function validarInputTextoSwal(texto, tipoDeInput){
 
 async function editarAlumno(alumno){
     let nombre, apellido, natalicio, email;
-
     const
     mensaje_alerta = "<h2>Editar alumno </h2><br>",
     inputNombre = "<br> Nombre: <input type='text' class='swal2-input' id='swal_nombre' value ='"+alumno.nombre+"'>",
