@@ -1,6 +1,6 @@
 # SOCA
 
-SOCA es el Sistema Optimizado para el Control de Asistencia diseñado especialmente para instituciones educativas y profesores de escuelas superiores, terciaras y universidades de Argentina. Este sistema brinda a los profesores la posibilidad de asociarse a una materia en una institución durante un período lectivo. El SOCA permite llevar el control de las asistencias y de las calificaciones de los alumnos fácilmente, proporcionando un panel de control para cada curso donde el profesor podrá visualizar el estado de cada alumno de acuerdo al avance del año.
+SOCA es el Sistema Optimizado para el Control de Asistencia diseñado especialmente para instituciones educativas y profesores de escuelas superiores, terciaras y universidades de Argentina. Este sistema brinda a los profesores la posibilidad de asociarse a una materia en una institución durante un período lectivo. El SOCA permite llevar el control de las asistencias y de las calificaciones de los alumnos fácilmente, proporcionando un panel de control para cada curso donde el profesor podrá visualizar el estado de cada alumno de acuerdo al avance del año.<br>
 El SOCA se ajusta a los horarios del profesor para cargar automáticamente el curso en el que se encuentra dando clases en el momento en que se conecta, de esta manera, el proceso para pasar asistencia se reduce a:
 1. Entrar al aula.
 2. Ingresar a SOCA.
@@ -17,7 +17,7 @@ El SOCA se ajusta a los horarios del profesor para cargar automáticamente el cu
 3. Abrir HeidiSQL y ejecutar el archivo sql "bbdd_test.sql" con codificación UTF-8
 4. Abrir el navegador y acceder a "soca.test".
 
-* Puede iniciar sesión con los datos:
+<br>Puede iniciar sesión con los datos:
 - Email: jparra@profesor.com
 - Contraseña: 1234
 
