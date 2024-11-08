@@ -1,0 +1,92 @@
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(270deg, #6bff6b, #57cffe, #1dd1a1, #4e27cd);
+    background-size: 800% 800%;
+    animation: cambiarColor 20s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes cambiarColor {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+table{
+    text-align: center;
+    width: 100%;
+}
+td{
+    text-align: center;
+}
+.mensaje_error{
+    color:red;
+    font-family: arial;
+    font-size: small;
+}
+
+
+
+/*------------------------CONTENEDOR LOGIN----------------------*/
+.login-container{
+    background-color: #ffffff; 
+    border-radius: 12px; 
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #8d8dfa;
+}
+.login-header {
+    background-color: #3b91e6;
+    color: #fff;
+    padding: 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    text-align: center;
+}
+.login-header h1{
+    margin: 0;
+    font-size: 40pt;
+}
+.login-body {
+    padding: 20px;
+}
+.login-body input{
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px; 
+    background-color: #f0f0f0; 
+}
+.login-body input:focus{
+    background-color: #e8f9fc; 
+}
+.login-body button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #265d98;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+.login-body button:hover {
+    background-color: #599ee9;
+}
+.login-body button:active {
+    background-color: #1b4979;
+}
