@@ -17,12 +17,12 @@ El SOCA se ajusta a los horarios del profesor para cargar automáticamente el cu
 3. Abrir HeidiSQL y ejecutar el archivo sql "bbdd_test.sql" con codificación UTF-8
 4. Abrir el navegador y acceder a "soca.test".
 
-##Puede iniciar sesión con los datos:
+* Puede iniciar sesión con los datos:
 - Email: jparra@profesor.com
 - Contraseña: 1234
 
 ## Uso
-El usuario de pruebas tiene asignado el curso de Programación II en la carrera de Sistemas, en la Institución Sedes Sapientiae (Gualeguaychú - ER) hasta el 29/11/2024.
-Los horarios son los jueves de 19:30 a 21:35 y los viernes de 18:40 a 20:50, si ingresa al sistema en esos horarios (dentro del período lectivo) se carga automáticamente el curso para pasar asistencia.
-Puede cambiar los horarios en configuración (botón con ícono de engranaje en el encabezado superior), también crear los cursos para otras materias y registrar/eliminar/modificar/matricular alumnos.
-Puede acceder al registro de calificaciones (panel de control) de los cursos en el ícono de "A+" en el encabezado superior. Ahí puede ingresar notas y modificarlas si lo requiere.
+* El usuario de pruebas tiene asignado el curso de Programación II en la carrera de Sistemas, en la Institución Sedes Sapientiae (Gualeguaychú - ER) hasta el 29/11/2024. 
+* Los horarios son los jueves de 19:30 a 21:35 y los viernes de 18:40 a 20:50, si ingresa al sistema en esos horarios (dentro del período lectivo) se carga automáticamente el curso para pasar asistencia.
+* Puede cambiar los horarios en configuración (botón con ícono de engranaje en el encabezado superior), también crear los cursos para otras materias y registrar/eliminar/modificar/matricular alumnos.
+* Puede acceder al registro de calificaciones (panel de control) de los cursos en el ícono de "A+" en el encabezado superior. Ahí puede ingresar notas y modificarlas si lo requiere.
