@@ -17,7 +17,7 @@ El SOCA se ajusta a los horarios del profesor para cargar automáticamente el cu
 3. Abrir HeidiSQL y ejecutar el archivo sql "bbdd_test.sql" con codificación UTF-8
 4. Abrir el navegador y acceder a "soca.test".
 
-<br>Puede iniciar sesión con los datos:
+<br><b>Puede iniciar sesión con los datos:</b>
 - Email: jparra@profesor.com
 - Contraseña: 1234
 
